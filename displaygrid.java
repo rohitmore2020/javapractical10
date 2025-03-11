@@ -24,12 +24,15 @@
          System.out.print("- -");
          }
      }
-
+    
     public static String[][] getlayout(int size){
         String[][] s = new String[size][size];
-        int num=1;
+        int num=(int)System.currentTimeMillis()%size+1;
+        if(num <0){
+            num = -1*num;
+        }
         for(int a=0; a<size ; a++){ 
-            int i= num;
+            int i=num;
             for(int b=0; b<size ; b++){
                 s[a][b] = String.format("%3d", i);
                 if(i ==size){
@@ -39,7 +42,7 @@
                 i++;
                 }
             }
-            num++;
+            num = num%size+1;
         }
         return s;
     }
@@ -52,6 +55,12 @@
         while(cnt < target){
         int pos1 = (int)System.currentTimeMillis()%s.length;
         int pos2 = (int)System.currentTimeMillis()%s.length;
+        if(pos1 <0){
+            pos1 = -1*pos1;
+        }
+        if(pos2 <0){
+            pos2 = -1*pos2;
+        }
         
         if(s[pos1][pos2].matches("   ")){
             pos2 = (int)System.currentTimeMillis()%s.length;
@@ -63,7 +72,9 @@
     }
     return s;
     }
+
+    
      public static void main(String[] args){
-        DisplayGrid(createpuzzle(6));
+        DisplayGrid(createpuzzle(5));
      }
     }
